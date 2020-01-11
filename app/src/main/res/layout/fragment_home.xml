@@ -17,12 +17,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nickname_textView"
+        android:id="@+id/home_nickname_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="Panpan"
         android:textColor="#004c8c"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -31,18 +30,17 @@
         app:layout_constraintTop_toBottomOf="@+id/profilePictureImageView" />
 
     <TextView
-        android:id="@+id/profileDescription_textView"
+        android:id="@+id/home_profileDescription_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="I love to eat sleep and play"
         android:textColor="#004c8c"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/nickname_textView"
-        app:layout_constraintStart_toStartOf="@+id/nickname_textView"
-        app:layout_constraintTop_toBottomOf="@+id/nickname_textView" />
+        app:layout_constraintEnd_toEndOf="@+id/home_nickname_textView"
+        app:layout_constraintStart_toStartOf="@+id/home_nickname_textView"
+        app:layout_constraintTop_toBottomOf="@+id/home_nickname_textView" />
 
     <TextView
         android:id="@+id/joinedClubs_textView"
@@ -56,13 +54,13 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileDescription_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/home_profileDescription_textView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/clubRecycleView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/profileDescription_textView"
+        android:layout_below="@id/home_profileDescription_textView"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

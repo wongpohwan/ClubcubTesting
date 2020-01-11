@@ -12,7 +12,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import org.w3c.dom.Text
 
 /**
  * A simple [Fragment] subclass.
@@ -36,14 +35,15 @@ class ProfileFragment : Fragment() {
         val databaseReference = FirebaseDatabase.getInstance().reference.child("users").child(cUser!!.uid)
 
         // find the textview
-        val nickname_tv = view?.findViewById(R.id.nickname_textView) as TextView
+        val nickname_tv = view?.findViewById(R.id.home_nickname_textView) as TextView
         val email_tv = view?.findViewById(R.id.emailaddress_textView) as TextView
         val description_tv = view?.findViewById(R.id.profile_description_textView) as TextView
 
 
+        // display nickname, email, and profile description at profile fragment
         databaseReference.addValueEventListener(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Toast.makeText(view.context, p0.message, Toast.LENGTH_SHORT).show()
             }
 
             override fun onDataChange(p0: DataSnapshot) {
