@@ -1,14 +1,18 @@
 package com.example.clubcubtesting
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
+import java.util.regex.Pattern
 
 class LoginActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +22,21 @@ class LoginActivity: AppCompatActivity() {
 
         login_button_login.setOnClickListener{
             performLogin()
+        }
+
+        forget_password_button.setOnClickListener{
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Forgot Password")
+            val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
+            val userEmail = view.findViewById<EditText>(R.id.et_userEmail)
+
+            builder.setView(view)
+            builder.setPositiveButton("Reset", DialogInterface.OnClickListener { dialog, which ->
+                forgotPassword(userEmail)
+            })
+
+            builder.setNegativeButton("Close", DialogInterface.OnClickListener { dialog, which ->  })
+            builder.show()
         }
 
         back_to_registration_textView.setOnClickListener{
@@ -61,12 +80,6 @@ class LoginActivity: AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if(currentUser != null) {
-             //start an intent with put extra
-//            val emailLogin = email_edittext_login.text.toString()
-//            val intent = Intent(this, HomepageActivity::class.java).apply {
-//                putExtra("Email", emailLogin)
-//            }
-//            startActivity(intent)
 
             if(currentUser.isEmailVerified){
                 // start an intent (homepage) without put extra
@@ -82,5 +95,24 @@ class LoginActivity: AppCompatActivity() {
         else {
             Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun forgotPassword(userEmail:EditText) {
+
+        // validate user email
+        if(userEmail.text.toString().isEmpty()) {
+            return
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(userEmail.text.toString()).matches()) {
+            return
+        }
+
+        FirebaseAuth.getInstance().sendPasswordResetEmail(userEmail.text.toString())
+            .addOnCompleteListener {
+                if(it.isSuccessful){
+                    Toast.makeText(this, "Email is sent to reset password.", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 }
