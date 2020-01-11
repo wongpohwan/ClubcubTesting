@@ -3,6 +3,7 @@ package com.example.clubcubtesting
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.se.omapi.Session
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_homepage.*
 
 class HomepageActivity : AppCompatActivity() {
+    //lateinit var session: SessionManager
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item->
         when(item.itemId){
@@ -46,18 +48,11 @@ class HomepageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homepage)
 
-       // displayLoginEmail()
+        //session = SessionManager(applicationContext)
+
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         replaceFragment(HomeFragment())
     }
-
-//    private fun displayLoginEmail() {
-//        var intent = intent
-//        val emailLogin = intent.getStringExtra("Email")
-//
-//        val displayEmail = findViewById<TextView>(R.id.textView_display_username)
-//        displayEmail.text = emailLogin
-//    }
 
     private fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()

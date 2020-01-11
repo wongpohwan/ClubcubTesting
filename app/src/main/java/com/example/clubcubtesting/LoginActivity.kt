@@ -3,8 +3,10 @@ package com.example.clubcubtesting
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.se.omapi.Session
 import android.util.Log
 import android.util.Patterns
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -15,10 +17,19 @@ import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Pattern
 
 class LoginActivity: AppCompatActivity() {
+    //lateinit var session: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
+//        session = SessionManager(applicationContext)
+//        if(session.isLoggedIn()) {
+//            var intent: Intent = Intent(applicationContext,HomepageActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//            startActivity(intent)
+//            finish()
+//        }
 
         login_button_login.setOnClickListener{
             performLogin()
@@ -65,14 +76,17 @@ class LoginActivity: AppCompatActivity() {
                             "LoginActivity",
                             "Login successfully with uid: ${it.result?.user?.uid}"
                         )
+
+                      //  session.createLoginSession(email,password)
+
                         val user = FirebaseAuth.getInstance().currentUser
                         updateUI(user)
+
+
                     } else {
                         Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
                         updateUI(null)
                     }
-
-
                 }
         }
     }
@@ -80,7 +94,6 @@ class LoginActivity: AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if(currentUser != null) {
-
             if(currentUser.isEmailVerified){
                 // start an intent (homepage) without put extra
                 val intent = Intent(this, HomepageActivity::class.java)
