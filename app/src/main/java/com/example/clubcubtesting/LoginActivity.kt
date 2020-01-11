@@ -31,20 +31,30 @@ class LoginActivity: AppCompatActivity() {
         val email = email_edittext_login.text.toString()
         val password = password_edittext_login.text.toString()
 
-        Log.d("Login", "Attempt login with email/pw $email/***")
+        if(email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show()
+            return
+        }
+        else {
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener{
-            if(it.isSuccessful) {
-                Log.d("LoginActivity","Login successfully with uid: ${it.result?.user?.uid}")
-                val user = FirebaseAuth.getInstance().currentUser
-                updateUI(user)
-            }
-            else {
-                Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
-                updateUI(null)
-            }
+            Log.d("Login", "Attempt login with email/pw $email/***")
+
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Log.d(
+                            "LoginActivity",
+                            "Login successfully with uid: ${it.result?.user?.uid}"
+                        )
+                        val user = FirebaseAuth.getInstance().currentUser
+                        updateUI(user)
+                    } else {
+                        Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
+                        updateUI(null)
+                    }
 
 
+                }
         }
     }
 
@@ -58,10 +68,16 @@ class LoginActivity: AppCompatActivity() {
 //            }
 //            startActivity(intent)
 
-            // start an intent (homepage) without put extra
-            val intent = Intent(this, HomepageActivity::class.java)
-            startActivity(intent)
-            finish()
+            if(currentUser.isEmailVerified){
+                // start an intent (homepage) without put extra
+                val intent = Intent(this, HomepageActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else {
+                Toast.makeText(this, "Please verify your email address", Toast.LENGTH_SHORT).show()
+            }
+
         }
         else {
             Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()

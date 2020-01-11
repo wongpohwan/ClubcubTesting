@@ -49,9 +49,17 @@ class RegisterActivity : AppCompatActivity() {
         // Firebase authentication to create user
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if(it.isSuccessful) {
+                val user = auth.currentUser
+
+                user?.sendEmailVerification()?.addOnCompleteListener{
+                    if(it.isSuccessful) {
+                        Log.d("RegisterActivity", "Email Sent.")
+                    }
+                }
+
                 Toast.makeText(
                     this,
-                    "Successfully created user with uid: ${it.result?.user?.uid}",
+                    "Register Successfully, please verify your email address.",
                     Toast.LENGTH_SHORT
                 ).show()
 

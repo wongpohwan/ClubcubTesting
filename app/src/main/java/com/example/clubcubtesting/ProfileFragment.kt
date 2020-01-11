@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_register.*
 
 /**
  * A simple [Fragment] subclass.
@@ -55,30 +56,30 @@ class ProfileFragment : Fragment() {
                 email_tv.text = email
                 description_tv.text = description
 
+                btnEditProfile.setOnClickListener{
+                    // start an intent with put extra
+                    val intent = Intent(view.context, EditProfileActivity::class.java).apply {
+                        putExtra("Nickname", nickname)
+                        putExtra("Description",description)
+                        putExtra("Email", email)
+                    }
+                    startActivity(intent)
+                }
+
+                btnChgPw.setOnClickListener {
+                    changePw()
+                }
+
+                btnLogout.setOnClickListener{
+                    logOut()
+                }
             }
 
         })
 
-        btnEditProfile.setOnClickListener{
-            editProfile()
-        }
 
-        btnChgPw.setOnClickListener {
-            changePw()
-        }
-
-        btnLogout.setOnClickListener{
-            logOut()
-        }
 
         return view
-    }
-
-
-
-    private fun editProfile() {
-        val intent = Intent(view?.context, EditProfileActivity::class.java)
-        startActivity(intent)
     }
 
     private fun changePw() {
