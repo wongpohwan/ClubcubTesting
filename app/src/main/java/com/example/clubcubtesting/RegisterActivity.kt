@@ -91,6 +91,7 @@ class RegisterActivity : AppCompatActivity() {
             ).show()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
     }

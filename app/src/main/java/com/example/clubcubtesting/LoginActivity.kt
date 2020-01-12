@@ -15,6 +15,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Pattern
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class LoginActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,13 +52,13 @@ class LoginActivity: AppCompatActivity() {
             startActivity(intent)
         }
 
-        val auth = FirebaseAuth.getInstance()
-        // when user is signed in
-        if (auth.currentUser != null) {
-            val intent = Intent(this, HomepageActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+//        val auth = FirebaseAuth.getInstance()
+//        // when user is signed in
+//        if (auth.currentUser != null) {
+//            val intent = Intent(this, HomepageActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
     }
 
     private fun performLogin() {
@@ -76,8 +81,6 @@ class LoginActivity: AppCompatActivity() {
                             "Login successfully with uid: ${it.result?.user?.uid}"
                         )
 
-                      //  session.createLoginSession(email,password)
-
                         val user = FirebaseAuth.getInstance().currentUser
                         updateUI(user)
 
@@ -96,6 +99,7 @@ class LoginActivity: AppCompatActivity() {
             if(currentUser.isEmailVerified){
                 // start an intent (homepage) without put extra
                 val intent = Intent(this, HomepageActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()
             }
