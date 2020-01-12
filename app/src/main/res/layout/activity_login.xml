@@ -79,16 +79,6 @@
         app:layout_constraintStart_toStartOf="@+id/email_edittext_login"
         app:layout_constraintTop_toBottomOf="@+id/email_edittext_login" />
 
-    <CheckBox
-        android:id="@+id/rememberMe_checkBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/remember_me"
-        app:layout_constraintEnd_toEndOf="@+id/password_edittext_login"
-        app:layout_constraintStart_toStartOf="@+id/password_edittext_login"
-        app:layout_constraintTop_toBottomOf="@+id/password_edittext_login" />
-
     <Button
         android:id="@+id/login_button_login"
         android:layout_width="0dp"
@@ -97,9 +87,9 @@
         android:background="#004c8c"
         android:text="@string/login"
         android:textColor="#ffffff"
-        app:layout_constraintEnd_toEndOf="@+id/rememberMe_checkBox"
-        app:layout_constraintStart_toStartOf="@+id/rememberMe_checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/rememberMe_checkBox" />
+        app:layout_constraintEnd_toEndOf="@+id/password_edittext_login"
+        app:layout_constraintStart_toStartOf="@+id/password_edittext_login"
+        app:layout_constraintTop_toBottomOf="@+id/password_edittext_login" />
 
     <Button
         android:id="@+id/forget_password_button"

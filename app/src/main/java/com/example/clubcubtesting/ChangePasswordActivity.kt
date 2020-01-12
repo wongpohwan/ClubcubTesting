@@ -3,6 +3,7 @@ package com.example.clubcubtesting
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.widget.Toast
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -26,9 +27,21 @@ class ChangePasswordActivity : AppCompatActivity() {
     }
 
     private fun changePassword() {
-        if(oldpw_editText.text.isNotEmpty() &&
-                newpw_editText.text.isNotEmpty() &&
-                confirmpw_editText.text.isNotEmpty()) {
+
+        if(TextUtils.isEmpty(oldpw_editText.text)){
+            oldpw_editText.setError("Old Password Required")
+            return
+        }
+
+        if(TextUtils.isEmpty(newpw_editText.text)){
+            newpw_editText.setError("New Password Required")
+            return
+        }
+
+        if(TextUtils.isEmpty(confirmpw_editText.text)){
+            confirmpw_editText.setError("Confirm Password Required")
+            return
+        }
             if(newpw_editText.text.toString().equals(confirmpw_editText.text.toString())) {
                 val user = auth.currentUser
                 if(user != null && user.email != null) {
@@ -61,8 +74,6 @@ class ChangePasswordActivity : AppCompatActivity() {
             }else {
                 Toast.makeText(this, "Password mismatching", Toast.LENGTH_SHORT)
             }
-        }else {
-            Toast.makeText(this, "Please enter all the fields", Toast.LENGTH_SHORT)
-        }
+
     }
 }

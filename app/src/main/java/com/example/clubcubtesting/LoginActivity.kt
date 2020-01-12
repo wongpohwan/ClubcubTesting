@@ -17,19 +17,10 @@ import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Pattern
 
 class LoginActivity: AppCompatActivity() {
-    //lateinit var session: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
-//        session = SessionManager(applicationContext)
-//        if(session.isLoggedIn()) {
-//            var intent: Intent = Intent(applicationContext,HomepageActivity::class.java)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//            startActivity(intent)
-//            finish()
-//        }
 
         login_button_login.setOnClickListener{
             performLogin()
@@ -54,6 +45,14 @@ class LoginActivity: AppCompatActivity() {
             // go to RegisterActivity
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+        }
+
+        val auth = FirebaseAuth.getInstance()
+        // when user is signed in
+        if (auth.currentUser != null) {
+            val intent = Intent(this, HomepageActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
