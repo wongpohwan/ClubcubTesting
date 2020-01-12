@@ -29,22 +29,12 @@ class clubAdapter : RecyclerView.Adapter<clubAdapter.Companion.Holder> {
                 imgPath = rv.findViewById(R.id.clubImageView) as ImageView
                 clubName_textView = rv.findViewById(R.id.clubName_textView) as TextView
             }
-
-//            fun bind(club: club, clickListener: OnItemClickListener) {
-//                 clubName.text = club.getClubname()
-//
-//                itemView.setOnClickListener{
-//                    clickListener.onItemClicked(club)
-//                }
-//            }
-
         }
 
     }
 
     var list: MutableList<club> = mutableListOf()
     var con:Context
-//    lateinit var itemClickListener:OnItemClickListener
 
     constructor(list: MutableList<club>, con: Context) : super() {
         this.list = list
@@ -68,7 +58,6 @@ class clubAdapter : RecyclerView.Adapter<clubAdapter.Companion.Holder> {
         club = list.get(position)
         holder.clubName_textView.setText(club.getClubname())
         holder.imgPath.setImageResource(club.getPath())
-//        holder.bind(club, itemClickListener)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, ClubMainActivity::class.java)
@@ -78,8 +67,3 @@ class clubAdapter : RecyclerView.Adapter<clubAdapter.Companion.Holder> {
     }
 
 }
-
-////add on
-//interface OnItemClickListener {
-//    fun onItemClicked(club: club)
-//}

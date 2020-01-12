@@ -15,7 +15,7 @@
    >
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/signup_textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -27,7 +27,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/logo_imageView" />
 
     <EditText
         android:id="@+id/nickname_edittext_register"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_textView" />
 
     <EditText
         android:id="@+id/email_edittext_register"
@@ -50,7 +50,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/nickname_edittext_register"
         app:layout_constraintStart_toStartOf="@+id/nickname_edittext_register"
@@ -62,7 +62,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/email_edittext_register"
         app:layout_constraintStart_toStartOf="@+id/email_edittext_register"
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="#004c8c"
-        android:text="Register"
+        android:text="@string/register"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="@+id/password_edittext_register"
         app:layout_constraintStart_toStartOf="@+id/password_edittext_register"
@@ -85,17 +85,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="@string/ard_have_account"
         android:textSize="16dp"
-        android:text="Already have an account?"
         app:layout_constraintEnd_toEndOf="@+id/register_button_register"
         app:layout_constraintStart_toStartOf="@+id/register_button_register"
         app:layout_constraintTop_toBottomOf="@+id/register_button_register" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/logo_imageView"
         android:layout_width="118dp"
         android:layout_height="118dp"
         android:layout_marginTop="32dp"
+        android:contentDescription="@string/clubcub"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
